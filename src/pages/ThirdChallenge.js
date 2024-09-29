@@ -20,7 +20,7 @@ const FirstChallenge = () => {
     <div className="heading-container">
     <div className="left-section">
         <div className="title">
-            <h1>Third Challenge</h1>
+            <h1>THIRD CHALLENGE</h1>
         </div>
         <div className="description">
         <div className="description-heading" style={{color:"red"}}>
