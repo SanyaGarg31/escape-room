@@ -5,6 +5,7 @@ import Timer from '../components/Timer'
 import InputSection from '../components/InputSection'
 
 const FirstChallenge = () => {
+    const challengefirst = "second_challenge"
     const [disabledField, setDisabledField] = useState(false)
     const handleTimeout =() =>{
         setDisabledField(true)
@@ -17,7 +18,7 @@ const FirstChallenge = () => {
     <div className="heading-container">
     <div className="left-section">
         <div className="title">
-            <h1>First Challenge</h1>
+            <h1>FIRST CHALLENGE</h1>
         </div>
         <div className="description">
         <div className="description-heading" style={{color:"red"}}>
@@ -38,7 +39,7 @@ Can you help Jim decode the password so he can proceed further?</p>
         <br />
         <br />
         <br />
-        <InputSection disabledField={disabledField} passwordValidated={passwordValidated} />
+        <InputSection disabledField={disabledField} passwordValidated={passwordValidated} challenge={challengefirst} />
     </div>
     </div>
   )
