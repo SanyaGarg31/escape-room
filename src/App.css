@@ -179,3 +179,10 @@ button:hover {
 .text-center {
   text-align: center;
 }
+
+.lefty-section{
+  background: #333;
+  padding-top: 5em;
+  display: flex;
+  justify-content: center;
+}
