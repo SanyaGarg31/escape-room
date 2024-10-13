@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import RulesPage from './components/RulesPage';
+import ChallengePage from './components/ChallengePage';
+import ConcludingPage from './components/ConcludingPage';
+import Navbar from './components/Navbar';
+import { TimerProvider } from './TimerContext';
+import { BadgeProvider } from './BadgeContext';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <TimerProvider>
+        <BadgeProvider>
+        <div>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/rules" element={<RulesPage />} />
+            <Route path="/challenge/:id" element={<ChallengePage />} />
+            <Route path="/conclusion" element={<ConcludingPage />} />
+          </Routes>
+        </div>
+        </BadgeProvider>
+      </TimerProvider>
+    </Router>
   );
 }
 
