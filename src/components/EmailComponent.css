@@ -1,0 +1,77 @@
+/* body {
+    font-family: Calibri, sans-serif;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    padding-bottom: 20px;
+  }
+   */
+  .email-container {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 20px;
+    width: 95vw; /* Set width to 95% of the viewport width */
+    max-width: 800px; /* Optional: Set a maximum width for better aesthetics */
+    height: 50vh; /* Set height to cover the bottom half of the viewport */
+    overflow-y: auto; /* Allow internal scrolling if the content exceeds */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 15rem;
+  }
+  
+  .email-header {
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between; /* Distribute space between items */
+    align-items: flex-start; /* Align items at the top */
+  }
+  
+  .email-meta {
+    flex: 1; /* Allow the meta information to take up remaining space */
+  }
+  
+  .email-meta p {
+    margin: 0;
+    padding: 5px 0;
+    font-size: 12px; /* Increase font size to 12px */
+  }
+  
+  .email-body {
+    font-size: 12px; /* Increase font size to 12px */
+    line-height: 1.6;
+  }
+  
+  .email-body p {
+    margin-bottom: 10px;
+  }
+  
+  .email-actions {
+    display: flex; /* Use flexbox for alignment */
+    gap: 10px; /* Add spacing between buttons */
+  }
+  
+  .email-btn {
+    background-color: #f1f1f1;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 12px; /* Increase font size to 12px */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .email-btn:hover {
+    background-color: #e0e0e0;
+  }
+  
+  h2 {
+    font-size: 15px; /* Increase header font size to 15px */
+    margin-bottom: 10px;
+  }
