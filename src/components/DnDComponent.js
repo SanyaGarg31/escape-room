@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import Button from 'react-bootstrap/Button';
+import { BadgeContext } from '../BadgeContext';
+import badge from '../assets/badge3.png'
+import { useNavigate } from 'react-router-dom';
 
 const ItemTypes = {
   ITEM: 'item',
@@ -47,6 +51,9 @@ const DnDComponent = () => {
   const [suspiciousItems, setSuspiciousItems] = useState([]);
   const [usualItems, setUsualItems] = useState([]);
   const [feedback, setFeedback] = useState('');
+  const [isCompleted, setIsCompleted] = useState(false);
+  const { earnedBadges, addBadge } = useContext(BadgeContext);
+  const navigate = useNavigate();
 
   const transactionTimings = [
     { id: 1, value: 'Monday - 10:47 AM', type: 'timing' },
@@ -67,6 +74,7 @@ const DnDComponent = () => {
   const correctSuspicious = [
     { value: '₹2,00,000', type: 'amount' },
     { value: 'Tuesday - 10:48 PM', type: 'timing' },
+    { value: 'GreenThumb Fertilizers', type: 'vendor' }
   ];
 
   const correctUsual = [
@@ -74,7 +82,9 @@ const DnDComponent = () => {
     { value: 'Monday - 10:47 AM', type: 'timing' },
     { value: '₹1,00,000', type: 'amount' },
   ];
-
+  const handleNext = () => {
+    navigate(`/challenge/4`);
+  };
   // Function to validate the answers
   const validateAnswers = () => {
     const isSuspiciousCorrect =
@@ -91,8 +101,11 @@ const DnDComponent = () => {
 
     if (isSuspiciousCorrect && isUsualCorrect) {
       setFeedback('Correct!');
+      setIsCompleted(true);
+      addBadge(badge);
     } else {
       setFeedback('Incorrect! Please try again.');
+      setIsCompleted(false);
     }
   };
 
@@ -104,55 +117,73 @@ const DnDComponent = () => {
   };
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-        <div>
-          <h4>Transaction Timings</h4>
-          {transactionTimings.map((item) => (
-            <DraggableItem key={item.id} item={item} type={item.type} />
-          ))}
-        </div>
+    <div>
+      {!isCompleted ? ((
+        <DndProvider backend={HTML5Backend}>
+          <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+            <div>
+              <h4>Transaction Timings</h4>
+              {transactionTimings.map((item) => (
+                <DraggableItem key={item.id} item={item} type={item.type} />
+              ))}
+            </div>
 
-        <div>
-          <h4>Transaction Amounts</h4>
-          {transactionAmounts.map((item) => (
-            <DraggableItem key={item.id} item={item} type={item.type} />
-          ))}
-        </div>
+            <div>
+              <h4>Transaction Amounts</h4>
+              {transactionAmounts.map((item) => (
+                <DraggableItem key={item.id} item={item} type={item.type} />
+              ))}
+            </div>
 
-        <div>
-          <h4>Vendor Names</h4>
-          {vendorNames.map((item) => (
-            <DraggableItem key={item.id} item={item} type={item.type} />
-          ))}
-        </div>
-      </div>
+            <div>
+              <h4>Vendor Names</h4>
+              {vendorNames.map((item) => (
+                <DraggableItem key={item.id} item={item} type={item.type} />
+              ))}
+            </div>
+          </div>
 
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
-        <DropArea
-          label="Suspicious Behaviour"
-          items={suspiciousItems}
-          setItems={setSuspiciousItems}
-          allowedTypes={['timing', 'amount', 'vendor']}
-        />
-        <DropArea
-          label="Usual Business Behaviour"
-          items={usualItems}
-          setItems={setUsualItems}
-          allowedTypes={['timing', 'amount', 'vendor']}
-        />
-      </div>
+          <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
+            <DropArea
+              label="Suspicious Behaviour"
+              items={suspiciousItems}
+              setItems={setSuspiciousItems}
+              allowedTypes={['timing', 'amount', 'vendor']}
+            />
+            <DropArea
+              label="Usual Business Behaviour"
+              items={usualItems}
+              setItems={setUsualItems}
+              allowedTypes={['timing', 'amount', 'vendor']}
+            />
+          </div>
 
-      <div style={{ marginTop: '20px', textAlign: 'center' }}>
-        <button onClick={validateAnswers} style={{ padding: '10px 20px', cursor: 'pointer', marginRight: '10px' }}>
-          Submit
-        </button>
-        <button onClick={resetGame} style={{ padding: '10px 20px', cursor: 'pointer' }}>
-          Reset
-        </button>
-        <h3>{feedback}</h3>
-      </div>
-    </DndProvider>
+          <div className='row' style={{ marginTop: '30px', textAlign: "center" }}>
+
+            <div className='row d-inline-flex justify-content-center' >
+              <div className='col' style={{ maxWidth: 'fit-content' }}>
+                <Button variant="primary" size="sm" onClick={validateAnswers}>Submit</Button>
+
+
+              </div>
+              <div className='col' style={{ maxWidth: 'fit-content' }}>
+                <Button variant="secondary" size="sm" onClick={resetGame}>Reset</Button>
+              </div>
+
+            </div>
+            <div className='row my-3' style={{color:"red"}}>
+              <h3>{feedback}</h3>
+            </div>
+          </div>
+        </DndProvider>
+      )) : ((
+        <>
+          <p style={{ color: "green" }}>Congratulations! You've earned the badge for this challenge.</p>
+          <p>You're awarded: <img src={badge} alt={`Badge for challenge`} style={{ height: "50px" }} /></p>
+          <Button variant="outline-secondary" onClick={handleNext}>Next Challenge</Button>
+        </>
+      ))}
+    </div>
   );
 };
 

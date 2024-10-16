@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import { BadgeContext } from '../BadgeContext';
+import { TimerContext } from '../TimerContext';
 
 const ConcludingPage = () => {
   const { earnedBadges } = useContext(BadgeContext);
+  const { setTimerStarted, resetTimer } = useContext(TimerContext);
+  setTimerStarted(false);
 
   return (
     <div className="concluding-page" style={{textAlign:"center", marginTop:"5rem"}}>

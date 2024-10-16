@@ -1,0 +1,91 @@
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #00ffcc;
+  }
+  
+    .profile-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+    }
+  
+  /* .row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  } */
+  
+  .profile {
+    background-color: #1a1a1a;
+    border: 2px solid #00ffcc;
+    border-radius: 8px;
+    width: 250px;
+    padding: 25px;
+    box-shadow: 0px 0px 15px rgba(0, 255, 204, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative; 
+  }
+  
+  .profile:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 25px rgba(0, 255, 204, 0.8);
+  }
+  
+  .profile.correct {
+    background-color: #004d33;
+    border-color: #00ff00;
+  }
+  
+  .profile.correct:hover {
+    transform: scale(1.05) rotate(3deg);
+    box-shadow: 0px 0px 25px rgba(0, 255, 0, 0.8);
+  }
+  
+  .profile.incorrect {
+    background-color: #660000;
+    border-color: #ff1a1a;
+  }
+  
+  .profile.incorrect:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 25px rgba(255, 26, 26, 0.8);
+  }
+  
+  .profile-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #00ffcc;
+  }
+  
+  .profile.correct .profile-icon {
+    color: #00ff00;
+  }
+  
+  .profile h2 {
+    font-size: 1.2rem; 
+    margin: 10px 0;
+    text-transform: uppercase;
+    color: #e6e6e6;
+  }
+  
+  .profile p {
+    font-size: 0.9rem;
+    color: #b3b3b3;
+  }
+  
+  .message h2 {
+    font-size: 2rem;
+    color: #ffcc00;
+    margin-top: 30px;
+  }
+  
+  footer {
+    margin-top: 30px;
+    color: #4dffdb;
+    font-style: italic;
+  }

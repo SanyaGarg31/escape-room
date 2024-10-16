@@ -1,0 +1,118 @@
+    body {
+        background-color: white;
+        font-family: 'Courier New', Courier, monospace;
+        color: #f0f0f0;
+        text-align: center;
+        /* padding: 20px; */
+    }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    color: #00ff99;
+  }
+  
+  .image-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .rotating-image img {
+    width: 150px;
+    height: 150px;
+    transition: transform 0.5s ease;
+    border: 3px solid #012269;
+    border-radius: 12px;
+  }
+  
+  .arrows {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .arrows button {
+    background-color: rgb(221, 213, 213);
+    color: #00ff99;
+    border: 2px solid #012269;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 0 5px; /* Spacing between arrows */
+  }
+  
+  .arrows button:hover {
+    background-color: #012269;
+    color: #1a1a1a;
+    transform: scale(1.1);
+  }
+  
+  .code-input-container {
+    margin-top: 30px;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .input-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .input-boxes input {
+    background-color: rgb(221, 213, 213);
+    color: #012269;
+    border: 2px solid #012269;
+    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    text-align: center;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input-boxes input.incorrect {
+    border-color: #ff1a1a;
+  }
+  
+  .check-button {
+    margin-top: 20px;
+    background-color: rgb(221, 213, 213);
+    color: #012269;
+    border: 2px solid #012269;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .check-button:hover {
+    background-color: #00ff99;
+    color: #1a1a1a;
+    transform: scale(1.1);
+  }
+  
+  .success {
+    color: #00ff00;
+    margin-top: 20px;
+  }
+  
+  .error {
+    color: #ff1a1a;
+    margin-top: 20px;
+  }
+  
+  footer {
+    margin-top: 40px;
+    color: #012269;
+    font-style: italic;
+  }

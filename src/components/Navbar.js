@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { TimerContext } from '../TimerContext';
 import './Navbar.css';
 import logo from '../assets/BoaLogoSvg.svg';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 const Navbar = () => {
   const { timeLeft } = useContext(TimerContext);
@@ -30,7 +31,7 @@ const Navbar = () => {
       </div>
       {showMenu && (
         <div className="menu-content">
-          <p>Progress: Check your current challenge and progress here!</p>
+          <ProgressBar animated now={45} />Progress 
         </div>
       )}
     </nav>
