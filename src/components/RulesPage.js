@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import thirty from '../assets/thirtyMinutes.svg';
 import badge from '../assets/badge2.svg';
-import timer from '../assets/timer.svg'
+import timer from '../assets/hourglass.svg'
 
 const RulesPage = () => {
   const { setTimerStarted, resetTimer } = useContext(TimerContext);

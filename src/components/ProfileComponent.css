@@ -89,3 +89,36 @@ h1 {
     color: #4dffdb;
     font-style: italic;
   }
+
+  .profile {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.correct-profile {
+    background-color: lightgreen; /* Green background for the correct profile */
+}
+
+.incorrect-profile {
+    background-color: lightcoral; /* Red background for the incorrect profile */
+}
+
+.profile-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}

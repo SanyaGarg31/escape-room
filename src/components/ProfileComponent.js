@@ -1,9 +1,16 @@
-import React, { useState, useContext } from 'react'
-import './ProfileComponent.css'
+import React, { useState, useContext } from 'react';
+import './ProfileComponent.css';
 import { BadgeContext } from '../BadgeContext';
-import badge from '../assets/badge6.svg'
+import badge from '../assets/badge6.svg';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import icon1 from '../assets/profile1.jpeg';
+import icon2 from '../assets/profile2before.png';
+import icon3 from '../assets/profile3.png';
+import icon4 from '../assets/profile4.jpeg';
+import icon5 from '../assets/profile5.jpg';
+import icon6 from '../assets/profile2after.png';
+import Confetti from 'react-confetti';
 
 const profiles = [
     {
@@ -39,13 +46,25 @@ const profiles = [
 ];
 
 const Profile = ({ profile, handleClick, isCorrect, isIncorrect, disabled }) => {
+    const profileIcons = {
+        1: icon1,
+        2: icon2,
+        3: icon3,
+        4: icon4,
+        5: icon5,
+    };
+
     return (
         <div
-            className={`profile ${isCorrect ? "correct" : ""} ${isIncorrect ? "incorrect" : ""}`}
+            className={`profile ${isCorrect ? 'correct-profile' : ''} ${isIncorrect ? 'incorrect-profile' : ''}`}
             onClick={!disabled ? () => handleClick(profile.id) : null}
         >
-            <div className="profile-icon">
-                {isCorrect ? "🔓" : "🔒"}
+            <div className="profile-icon-container">
+                <img 
+                    src={isCorrect ? icon6 : profileIcons[profile.id]} 
+                    alt={`Profile ${profile.id} icon`} 
+                    className="profile-icon"
+                />
             </div>
             <h2>Profile {profile.id}</h2>
             <p>Username: {profile.username}</p>
@@ -54,17 +73,18 @@ const Profile = ({ profile, handleClick, isCorrect, isIncorrect, disabled }) => 
         </div>
     );
 };
+
 export default function ProfileComponent() {
     const [selectedProfile, setSelectedProfile] = useState(null);
     const [tries, setTries] = useState(0);
     const [gameOver, setGameOver] = useState(false);
     const [success, setSuccess] = useState(false);
     const [isCompleted, setIsCompleted] = useState(false);
-    const { earnedBadges, addBadge } = useContext(BadgeContext);
+    const { addBadge } = useContext(BadgeContext);
     const navigate = useNavigate();
 
     const handleNext = () => {
-        navigate(`/conclusion`);
+        navigate('/conclusion'); // Navigates to ConcludingPage.js
     };
 
     const handleClick = (id) => {
@@ -73,37 +93,39 @@ export default function ProfileComponent() {
         setSelectedProfile(id);
         setTries(tries + 1);
 
-        if (id === 2) {
+        if (id === 2) { // Assuming profile with id 2 is the correct one
             setSuccess(true);
             setIsCompleted(true);
             addBadge(badge);
         } else if (tries + 1 >= 3) {
-            setIsCompleted(true)
+            setIsCompleted(true);
             setGameOver(true);
         }
     };
 
     return (
         <div className="App">
-            {isCompleted ? gameOver ? ((
-                <>
-                    <p style={{ color: "red" }}>Oh Ho! Unfortunately you've exhausted all your attempts</p>
-                    <Button variant="outline-secondary" onClick={handleNext}>Next</Button></>
-            )) : ((
-                <>
-                    <p style={{ color: "green" }}>Congratulations! You've earned the badge for this challenge.</p>
-                    <p>You're awarded: <img src={badge} alt={`Badge for challenge`} style={{ height: "50px" }} /></p>
-                    <Button variant="outline-secondary" onClick={handleNext}>Next</Button>
-                </>
-            )) : ((
+            {isCompleted ? (
+                <div className="message">
+                    {success && <Confetti />}
+                    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+                        <h1 style={{ color: 'green', fontSize: '48px' }}>Congratulations!</h1>
+                        <p style={{ fontSize: '24px' }}>You've earned the badge for this challenge.</p>
+                        <img
+                            src={badge}
+                            alt={`Badge for challenge`}
+                            style={{ height: '200px', margin: '20px auto', display: 'block' }}
+                        />
+                        <Button variant="outline-secondary" onClick={handleNext}>Finish</Button>
+                    </div>
+                </div>
+            ) : (
                 <>
                     <div className="profile-container">
-                        {/* First row with three profiles */}
                         <div className="row">
                             {profiles.slice(0, 3).map((profile) => (
-                                <div className='col'>
+                                <div className="col" key={profile.id}>
                                     <Profile
-                                        key={profile.id}
                                         profile={profile}
                                         handleClick={handleClick}
                                         isCorrect={profile.id === selectedProfile && profile.id === 2}
@@ -114,12 +136,10 @@ export default function ProfileComponent() {
                             ))}
                         </div>
 
-                        {/* Second row with two profiles centered below the first row */}
                         <div className="row">
                             {profiles.slice(3).map((profile) => (
-                                <div className='col'>
+                                <div className="col" key={profile.id}>
                                     <Profile
-                                        key={profile.id}
                                         profile={profile}
                                         handleClick={handleClick}
                                         isCorrect={profile.id === selectedProfile && profile.id === 2}
@@ -131,21 +151,9 @@ export default function ProfileComponent() {
                         </div>
                     </div>
 
-                    {gameOver && (
-                        <div className="message">
-                            {success ? (
-                                <h2>Congratulations! You're correct!</h2>
-                            ) : (
-                                <h2>Sorry, that was incorrect!</h2>
-                            )}
-                        </div>
-                    )}
-
-                    {!gameOver && <p> Attempts left: {3 - tries} </p>}
-
-                    <footer>Sometimes you need to look from a different perspective because a mirror never lies!</footer>
+                    {!gameOver && <p>Attempts left: {3 - tries}</p>}
                 </>
-            ))}
+            )}
         </div>
     );
 }

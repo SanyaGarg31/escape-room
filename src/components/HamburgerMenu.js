@@ -12,7 +12,7 @@ const HamburgerMenu = () => {
       <button onClick={toggleMenu}>
         ☰
       </button>
-      {isOpen && (
+      {/* {isOpen && (
         <div className="progress-menu">
           <p>Current Progress:</p>
           <ul>
@@ -20,7 +20,7 @@ const HamburgerMenu = () => {
             <li>Badges Earned: 3</li>
           </ul>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

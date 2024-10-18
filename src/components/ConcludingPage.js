@@ -17,7 +17,7 @@ const ConcludingPage = () => {
             <img key={index} src={badge} alt={`Badge ${index + 1}`}  style={{height:"50px", marginLeft:"10px"}}/>
           ))
         ) : (
-          <p>No badges earned yet.</p>
+          <p>No badges earned.</p>
         )}
       </div>
     </div>

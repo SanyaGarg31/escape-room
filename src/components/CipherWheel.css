@@ -1,32 +1,62 @@
 .table-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border: 2px solid #012269;
-    box-shadow: 0 0 8px #012269;
-    background-color: white;
-    width: 400px;
-    margin-top: 50px;
-  }
-  
-  .transaction-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .transaction-table td {
-    padding: 10px;
-    border-bottom: 1px solid #012269;
-    font-size: 16px;
-    color: black;
-  }
-  
-  .transaction-table td:first-child {
-    font-weight: bold;
-    color: #012269;
-  }
-  
-  .transaction-table tr:last-child td {
-    border-bottom: none;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid #012269;
+  box-shadow: 0 0 8px #012269;
+  background-color: white;
+  width: 400px;
+  margin-top: 50px;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transaction-table td {
+  padding: 10px;
+  border-bottom: 1px solid #012269;
+  font-size: 16px;
+  color: black;
+}
+
+.transaction-table td:first-child {
+  font-weight: bold;
+  color: #012269;
+}
+
+.transaction-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Add the neon glow effect to the input and the shift label */
+.shift-label {
+  font-size: 18px;
+  color: #00ff7f;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 0 0 10px #00ff7f, 0 0 20px #00ff7f, 0 0 30px #00ff7f;
+}
+
+.shift-input {
+  background-color: #000;
+  color: #00ff7f;
+  font-size: 18px;
+  border: 2px solid #00ff7f;
+  border-radius: 10px;
+  padding: 5px 10px;
+  text-align: center;
+  outline: none;
+  box-shadow: 0 0 10px #00ff7f, 0 0 20px #00ff7f, 0 0 30px #00ff7f;
+  transition: all 0.3s ease;
+}
+
+.shift-input:focus {
+  box-shadow: 0 0 15px #00ff7f, 0 0 25px #00ff7f, 0 0 35px #00ff7f;
+}
+
+.shift-input:hover {
+  cursor: pointer;
+  background-color: #111;
+}

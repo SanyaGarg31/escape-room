@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import './CipherWheel.css';
 
 export default function CipherWheel() {
     const [shift, setShift] = useState(0); // Default shift
     const canvasRef = useRef(null);
+
     const renderCircles = (shift) => {
         const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)); // A-Z
         const numbers = Array.from({ length: 26 }, (_, i) => i); // 0-25
@@ -23,6 +24,10 @@ export default function CipherWheel() {
         const textOffsetRadius = 225 / 1.2; // For outer letters
         const middleTextRadius = 175 / 1.2; // For middle letters
         const innerTextRadius = 125 / 1.2;  // For inner letters/numbers
+
+        // Neon green for circles and spokes
+        ctx.strokeStyle = '#00ff7f'; // Green neon for circles
+        ctx.lineWidth = 2; // Slightly thicker lines
 
         // Draw three circles
         ctx.beginPath();
@@ -45,7 +50,7 @@ export default function CipherWheel() {
             ctx.beginPath();
             ctx.moveTo(centerX, centerY);
             ctx.lineTo(xSpoke, ySpoke);
-            ctx.strokeStyle = 'black';
+            ctx.strokeStyle = '#00ff7f'; // Green neon for spokes
             ctx.stroke();
         });
 
@@ -55,7 +60,7 @@ export default function CipherWheel() {
             const x = centerX + textOffsetRadius * Math.cos(angle);
             const y = centerY + textOffsetRadius * Math.sin(angle);
             ctx.font = '16px Arial';
-            ctx.fillStyle = 'black';
+            ctx.fillStyle = '#00ff7f'; // Neon green text
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(char, x, y);
@@ -67,7 +72,7 @@ export default function CipherWheel() {
             const x = centerX + middleTextRadius * Math.cos(angle);
             const y = centerY + middleTextRadius * Math.sin(angle);
             ctx.font = '16px Arial';
-            ctx.fillStyle = 'black';
+            ctx.fillStyle = '#00ff7f'; // Neon green text
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(char, x, y);
@@ -79,12 +84,13 @@ export default function CipherWheel() {
             const x = centerX + innerTextRadius * Math.cos(angle);
             const y = centerY + innerTextRadius * Math.sin(angle);
             ctx.font = '16px Arial';
-            ctx.fillStyle = 'black';
+            ctx.fillStyle = '#00ff7f'; // Neon green text
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(num, x, y);
         });
     };
+
     useEffect(() => {
         renderCircles(shift);
     }, [shift]);
@@ -126,27 +132,24 @@ export default function CipherWheel() {
                     </div>
                 </div>
                 <div className="col p-0" style={{ maxWidth: "fit-content" }}>
-
                     <div className="row">
                         <canvas ref={canvasRef} height="550px" width="550px" />
                     </div>
-
                     <div className="row d-flex justify-content-center">
-                        <div className="col" style={{ maxWidth: "fit-content" }} >
-                        <p>SHIFT:</p>
+                        <div className="col" style={{ maxWidth: "fit-content" }}>
+                            <p className="shift-label">SHIFT:</p>
                         </div>
-                        <div className="col"style={{ maxWidth: "fit-content" }}>
-                        <input
-                            type="number"
-                            value={shift}
-                            onChange={(e) => setShift(Number(e.target.value))}
-                            min="0"
-                            max="25"
-                        />
+                        <div className="col" style={{ maxWidth: "fit-content" }}>
+                            <input
+                                type="number"
+                                value={shift}
+                                onChange={(e) => setShift(Number(e.target.value))}
+                                min="0"
+                                max="25"
+                                className="shift-input"
+                            />
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
